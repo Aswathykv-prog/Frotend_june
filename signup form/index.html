@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <section class="form_container">
+      <div class="sec0">
+
+        <div class="sec1">
+            <h1>Sign up</h1>
+        </div>
+
+        <form>
+            <input type="text" id="username" onkeyup="getUsername(event)">
+            <p class="err" id="user_name_err">Enter a valid User name</p>
+
+            <input type="email" id="email" onkeyup="getEmail(event)">
+            <p class="err" id="email_err">enter a valid email</p>
+
+            <input type="password" id="password" onkeyup="getPassword(event)">
+            <p class="err" id="pass_err"> enter a strong password </p>
+
+            <input type="password" id="confirmpassword" onkeyup="getConfirmPassword(event)">
+            <p class="err" id="confirm_pass_err"> password mismatch</p>
+        </form>
+    </div>
+
+    </section>
+
+    <script>
+
+        var username = document.getElementById('username')
+        let userNameError = document.getElementById('user_name_err')
+
+        let email = document.getElementById('email')
+        let emailError = document.getElementById('email_err')
+
+        let password = document.getElementById('password')
+        let passwordError = document.getElementById('pass_err')
+
+        let confirmpassword = document.getElementById('confirmpassword')
+        let confirmPasswordError = document.getElementById('confirm_pass_err')
+
+        let emailrepx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+        let passrepx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}:"<>?])(?!.*\s).{8,20}$/
+
+        function getUsername(event) {
+
+            let value = event.target.value
+
+            if (value.length > 3) {
+                userNameError.style.visibility = 'hidden'
+            }
+            else {
+                userNameError.style.visibility = 'visible'
+            }
+        }
+
+        function getEmail(event) {
+
+            let value = event.target.value
+            let result = emailrepx.test(value)
+            console.log(result);
+
+            if (result) {
+                emailError.style.visibility = 'hidden'
+            }
+            else {
+                emailError.style.visibility = 'visible'
+            }
+        }
+
+        let passwordValue;
+
+        function getPassword(event) {
+
+            passwordValue = event.target.value
+            let result = passrepx.test(passwordValue)
+            console.log(result);
+
+            if (result) {
+                passwordError.style.visibility = 'hidden'
+            }
+            else {
+                passwordError.style.visibility = 'visible'
+            }
+        }
+
+        function getConfirmPassword(event) {
+
+            let value = event.target.value
+
+
+            if (passwordValue == value) {
+
+                confirmPasswordError.style.visibility = 'hidden'
+            }
+            else {
+                confirmPasswordError.style.visibility = 'visible'
+            }
+        }
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>
